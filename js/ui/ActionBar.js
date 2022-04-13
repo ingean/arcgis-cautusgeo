@@ -1,9 +1,7 @@
-import Bookmarks from 'https://js.arcgis.com/4.22/@arcgis/core/widgets/Bookmarks.js'
-import BasemapGallery from 'https://js.arcgis.com/4.22/@arcgis/core/widgets/BasemapGallery.js'
-import LayerList from 'https://js.arcgis.com/4.22/@arcgis/core/widgets/LayerList.js'
-import Legend from 'https://js.arcgis.com/4.22/@arcgis/core/widgets/Legend.js'
-import Print from 'https://js.arcgis.com/4.22/@arcgis/core/widgets/Print.js'
-import Fullscreen from "https://js.arcgis.com/4.22/@arcgis/core/widgets/Fullscreen.js"
+import BasemapGallery from 'https://js.arcgis.com/4.23/@arcgis/core/widgets/BasemapGallery.js'
+import LayerList from 'https://js.arcgis.com/4.23/@arcgis/core/widgets/LayerList.js'
+import Legend from 'https://js.arcgis.com/4.23/@arcgis/core/widgets/Legend.js'
+import Fullscreen from "https://js.arcgis.com/4.23/@arcgis/core/widgets/Fullscreen.js"
 
 export default class ActionBar {
   constructor(view, defaultActiveWidgetId = null) {
@@ -14,10 +12,6 @@ export default class ActionBar {
         view,
         container: "basemaps-container"
       }),
-      bookmarks: new Bookmarks({
-        view,
-        container: "bookmarks-container"
-      }),
       layerList: new LayerList({
         view,
         selectionEnabled: true,
@@ -26,10 +20,6 @@ export default class ActionBar {
       legend: new Legend({
         view,
         container: "legend-container"
-      }),
-      print: new Print({
-        view,
-        container: "print-container"
       }),
       fullscreen: new Fullscreen({
         view: view

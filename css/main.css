@@ -20,30 +20,32 @@ calcite-loader {
   justify-self: center;
 }
 
-#header-title {
-  margin-left: 1rem;
-  margin-right: 1rem;
+calcite-panel {
+  height: 100vh;
 }
 
-#theme-switcher {
-  position: absolute;
-  right: 0;
-  margin: 0.75rem;
-  z-index: 2;
-  border: 1px solid;
-  border-color: var(--calcite-ui-border-1);
-  background-color: var(--calcite-ui-foreground-1);
+.flex-row {
+  display: flex;
+  flex-direction: row;
 }
 
-.theme-icon {
-  padding: 0.5rem;
-  cursor: pointer;
+.flex-row-right {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-#info-content {
-  padding: 0.75rem;
+.flex-column {
+  display: flex;
+  flex-direction: column;
 }
 
-calcite-rating {
-  margin-top: 0.25rem;
+.btn-no-style {
+  background-color: transparent;
+  color: inherit;
+  text-decoration: none;
+  border: none;
 }
+
