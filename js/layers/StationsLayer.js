@@ -1,3 +1,17 @@
+import FeatureLayer from 'https://js.arcgis.com/4.23/@arcgis/core/layers/FeatureLayer.js'
+
+
+export const create =  () => {
+  return new FeatureLayer({
+    title: 'Målestasjoner',
+    url: 'https://services.arcgis.com/2JyTvMWQSnM2Vi8q/arcgis/rest/services/CautusGeo/FeatureServer/0',
+    renderer: renderer,
+    labelingInfo: labelingInfo,
+    popupTemplate: popupTemplate
+  })
+}
+
+
 /*
 export const popupTemplate = { 
   title: "Målestasjon {Navn}",
@@ -24,7 +38,7 @@ export const popupTemplate = {
 }
 */
 
-export const popupTemplate = { 
+const popupTemplate = { 
   title: "Målestasjon {Navn}",
   content: [
     {
@@ -44,8 +58,7 @@ export const popupTemplate = {
   ]
 }
 
-
-export const labelingInfo = [
+const labelingInfo = [
   {
     labelExpressionInfo: {
       value: "{Navn}"
@@ -69,7 +82,7 @@ export const labelingInfo = [
   }
 ]
 
-export const renderer = {
+const renderer = {
   type: "simple",  // autocasts as new SimpleRenderer()
   symbol: {
     type: "point-3d", // autocasts as new PointSymbol3D()

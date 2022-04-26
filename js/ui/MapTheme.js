@@ -2,9 +2,9 @@ import VectorTileLayer from 'https://js.arcgis.com/4.22/@arcgis/core/layers/Vect
 import Basemap from 'https://js.arcgis.com/4.22/@arcgis/core/Basemap.js'
 
 export default class MapTheme {
-  constructor(view, swichBasemap = true) {
+  constructor(view) {
     this.view = view
-    this.swichBasemap = swichBasemap
+  
     this.darkBaseMap = new Basemap({
       baseLayers: [
         new VectorTileLayer({
@@ -36,7 +36,7 @@ export default class MapTheme {
     dark.disabled = !dark.disabled
     light.disabled = !light.disabled
     // jsapi basemap color
-    if(this.swichBasemap) {
+    if(this.view) {
       this.view.map.basemap = dark.disabled ? this.lightBaseMap : this.darkBaseMap
     }
   }

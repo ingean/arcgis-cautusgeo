@@ -1,4 +1,21 @@
-export const popupTemplate = { 
+import FeatureLayer from 'https://js.arcgis.com/4.23/@arcgis/core/layers/FeatureLayer.js'
+
+
+export const create = () => {
+  return new FeatureLayer({
+    title: 'Skreddata (Vektor)',
+    url: 'https://services.arcgis.com/2JyTvMWQSnM2Vi8q/arcgis/rest/services/CautusGeo/FeatureServer/8',
+    renderer: heatmapRenderer,
+    popupTemplate: popupTemplate,
+    opacity: 0.7,
+    timeInfo: {
+      startField: "Skreddato",
+    }
+  })
+}
+
+
+const popupTemplate = { 
   title: "{Maalestasjon} ({Skreddato})",
   content: [
     {
@@ -24,7 +41,7 @@ export const rasterHeatMapRederer = {
   }
 }
 
-export const heatmapRenderer = {
+const heatmapRenderer = {
   type: "simple", // autocasts as new SimpleRenderer()
   symbol: {
     type: "polygon-3d", // autocasts as new PolygonSymbol3D()

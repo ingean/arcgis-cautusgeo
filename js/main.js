@@ -2,10 +2,8 @@ import esriConfig from 'https://js.arcgis.com/4.23/@arcgis/core/config.js'
 import Map from 'https://js.arcgis.com/4.23/@arcgis/core/Map.js'
 import SceneView from 'https://js.arcgis.com/4.23/@arcgis/core/views/SceneView.js'
 import ImageryTileLayer from 'https://js.arcgis.com/4.23/@arcgis/core/layers/ImageryTileLayer.js'
-import FeatureLayer from 'https://js.arcgis.com/4.23/@arcgis/core/layers/FeatureLayer.js'
 import ActionBar from './ui/ActionBar.js'
 import MapTheme from './ui/MapTheme.js'
-import { rasterHeatMapRederer, heatmapRenderer } from './layers/SensorDataLayer.js'
 import * as SensorDataLayer from './layers/SensorDataLayer.js'
 import * as StationsLayer from './layers/StationsLayer.js'
 import * as OAuth2 from './utils/OAuth2.js'
@@ -16,7 +14,7 @@ import * as DateSelector from './ui/DateSelector.js'
 //esriConfig.apiKey = 'AAPKa9498736c8d64cfdb88cd0abbde4efcb-bZOw_j3NJA_zxvWbyNiCSB0NSwvP58ngMuXuhLHDU5YX_W9LrGy3fRhR01lMXbg'
 
 const portal = await OAuth2.authenticate() //Authenticate with named user using OAuth2
-const theme = new MapTheme() // Contains light and dark basemap
+const theme = new MapTheme() // Not passing the view prevents basemap switching when changing theme
 
 DateSelector.init()
 
@@ -35,24 +33,8 @@ const sensordataImageLayer = new ImageryTileLayer({
   }
 })
 
-const stationsLayer = new FeatureLayer({
-  title: 'Målestasjoner',
-  url: 'https://services.arcgis.com/2JyTvMWQSnM2Vi8q/arcgis/rest/services/CautusGeo/FeatureServer/0',
-  renderer: StationsLayer.renderer,
-  labelingInfo: StationsLayer.labelingInfo,
-  popupTemplate: StationsLayer.popupTemplate
-})
-
-const sensordataLayer = new FeatureLayer({
-  title: 'Skreddata (Vektor)',
-  url: 'https://services.arcgis.com/2JyTvMWQSnM2Vi8q/arcgis/rest/services/CautusGeo/FeatureServer/8',
-  renderer: SensorDataLayer.heatmapRenderer,
-  popupTemplate: SensorDataLayer.popupTemplate,
-  opacity: 0.7,
-  timeInfo: {
-    startField: "Skreddato",
-  }
-})
+const stationsLayer = StationsLayer.create()
+const sensordataLayer = SensorDataLayer.create()
 
 const scene = new Map({
   basemap: 'hybrid',
@@ -76,8 +58,6 @@ const view = new SceneView({
   center: UrlParams.center([-23.49, 66.06]),
   zoom: 15
 })
-
-theme.view = view
 
 view.whenLayerView(sensordataLayer).then((layerView) => {
   DateSelector.setLayerView(layerView)
