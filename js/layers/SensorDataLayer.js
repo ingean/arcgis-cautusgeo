@@ -38,11 +38,11 @@ export const heatmapRenderer = {
       stops: [
         {
           value: 62, // features where < 10% of the pop in poverty
-          size: 10 // will be extruded by this height in meters
+          size: 5 // will be extruded by this height in meters
         },
         {
           value: 84, // features where > 50% of the pop in poverty
-          size: 40 // will be extruded by this height in meters
+          size: 10 // will be extruded by this height in meters
         }
       ]
     },

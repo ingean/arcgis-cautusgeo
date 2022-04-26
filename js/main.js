@@ -39,7 +39,8 @@ const stationsLayer = new FeatureLayer({
   title: 'Målestasjoner',
   url: 'https://services.arcgis.com/2JyTvMWQSnM2Vi8q/arcgis/rest/services/CautusGeo/FeatureServer/0',
   renderer: StationsLayer.renderer,
-  labelingInfo: StationsLayer.labelingInfo
+  labelingInfo: StationsLayer.labelingInfo,
+  popupTemplate: StationsLayer.popupTemplate
 })
 
 const sensordataLayer = new FeatureLayer({

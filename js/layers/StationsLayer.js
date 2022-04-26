@@ -1,3 +1,49 @@
+/*
+export const popupTemplate = { 
+  title: "Målestasjon {Navn}",
+  content: [
+    {
+      type: "expression",
+      expressionInfo: {
+        expression: `
+        var html = '<table style="border: 1px solid;border-collapse: collapse;"><thead><th>Skreddato</th><th>Kommentar</th></thead>'
+        var fs = FeatureSetByRelationshipName($feature,"Skredhendelser")
+        for(var f in fs){
+            html += '<tr><td>' + Text(f.Skreddato, 'D.M.Y HH:mm:ss') + '</td><td>' + f.Kommentar + '</td></tr>'
+        }
+        
+        html += '</table>'
+        return {
+          type: 'text',
+          text: html
+        }
+        `
+      }    
+    }
+  ]
+}
+*/
+
+export const popupTemplate = { 
+  title: "Målestasjon {Navn}",
+  content: [
+    {
+      type: "expression",
+      expressionInfo: {
+        expression: `
+        var count = Count(FeatureSetByRelationshipName($feature,"Skredhendelser"))
+        var html = '<strong>' + count + '</strong> skredhendelser registrert ved denne stasjonen.'
+        
+        return {
+          type: 'text',
+          text: html
+        }
+        `
+      }    
+    }
+  ]
+}
+
 
 export const labelingInfo = [
   {

@@ -32,6 +32,7 @@ const addStation = (id, layer, feature, list, view) => {
 
 const addEventsListItems = (features) => {
   let list = document.getElementById('events-list')
+  list.innerHTML = ''
 
   features.forEach(feature => {
     let label = DateStr.formatEpoch(feature.attributes.Skreddato)
